@@ -16,7 +16,7 @@ const WriteContent = () => {
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
-        navigate('/home');
+        navigate('/');
     }
 
     return (
@@ -31,6 +31,8 @@ const WriteContent = () => {
                 </div>
                 <p><button type="submit" onClick={()=>{setContent}}>저장</button></p>
             </form>
+            <br></br>
+            <p><button onClick={()=>{navigate('/')}}>Go to Home</button></p>
         </div>
     ); 
 };

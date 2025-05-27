@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
+import List from './pages/Read/List';
 import WriteContent from './pages/Create/WriteContent';
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/read/list" element={<List />} />
         <Route path="/create/writecontent" element={<WriteContent/>}/>
       </Routes>
     </BrowserRouter>
