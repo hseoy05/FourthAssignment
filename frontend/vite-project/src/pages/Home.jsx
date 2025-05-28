@@ -7,7 +7,6 @@ const Home = () => {
     const goToWriteContnet = () => {
         navigate('/create/writecontent');
     }
-
     const goToList = () => {
         navigate('/read/list');
     }
