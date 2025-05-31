@@ -1,20 +1,23 @@
 import {React, useState} from 'react'
 
 const JoinPage =()=>{
-    return(
+    return (
         <>
-        <p><h2>회원가입 하기</h2></p>
-        <br></br>
-        <p>
+            <h2>로그인 하기</h2>
+            <br />
             <form action="/" method="POST">
-                <intput type="text" name="userId">아이디</intput>
-                <input type="text" name="userId">비밀번호</input>
-                <input type="text" name="userName">유저 이름</input>
-                <p><button type="submit">submit</button></p>
+                <div>
+                    <label>아이디: </label>
+                    <input type="text" name="userId" />
+                </div>
+                <div>
+                    <label>비밀번호: </label>
+                    <input type="password" name="userPassword" />
+                </div>
+                <button type="submit">submit</button>
             </form>
-        </p>
         </>
-    )
+    );
 }
 
 export default JoinPag

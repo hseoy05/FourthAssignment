@@ -1,17 +1,32 @@
-import { connect, getDB } from './db.js';
+const express = require('express');
+const bodyParser = require('body-parser')
+const app = express();
+const {connect, getDB} = require('./db');
+connect();
 
-const run = async () => {
-  await connect();
+app.use(express.json());
+
+app.get("/", (req, res) => {
+  return res.status(200).json({ message: "Hello!" });
+})
+
+app.post('/login', async (req, res)=>{
+  const {userId, userPassword} = req.body;
   const db = getDB();
-  const users = await db.collection("users").find().toArray();
 
-  console.log("usersTable:");
-  users.forEach((user, index) => {
-    console.log(`\n#${index + 1}`);
-    console.log("userId:", user.userId);
-    console.log("userPassword:", user.userPassword);
-    console.log("userName:", user.userName);
-  });
-};
+  try{
+    const user = await db.collection('users').findOne({userId: userId, userPassword: userPassword});
 
-run();
+    if (user) {
+      return res.status(200).json({success: true, userName:user.userName});
+    } else{
+      return res.status(401).json({success:false, message:'login fail'});
+    }
+  } catch (err){
+    return res.status(500).json({success:false, message:'server error'});
+  }
+});
+
+app.listen(8800, () => {
+  console.log('🚀 서버 실행 중: http://localhost:8800');
+});

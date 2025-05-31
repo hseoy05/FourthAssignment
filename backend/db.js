@@ -1,15 +1,19 @@
-import { MongoClient } from "mongodb";
+import { MongoClient } from 'mongodb';
 
 const uri = "mongodb://localhost:27017";
 const client = new MongoClient(uri);
 let db;
 
-export const connect = async () => {
-  await client.connect();
-  db = client.db("board");
-};
+export async function connect() {
+  try {
+    await client.connect();
+    db = client.db('board');
+  } catch (err) {
+    console.error('error');
+  }
+}
 
-export const getDB = () => {
-  if (!db) throw new Error("DB not connected");
+export function getDB(){
+  if(!db) throw new Error('error');
   return db;
-};
+}
