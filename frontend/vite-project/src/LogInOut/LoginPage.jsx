@@ -1,9 +1,15 @@
 import {React, useState} from 'react'
+import {useNavigate} from 'react-router-dom';
 
 const LoginPage =()=>{
     const [userId, setUserId] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+
+    useEffect(()=>{
+        if(message) {alert(message)}
+    }, [message]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,6 +24,7 @@ const LoginPage =()=>{
 
         if(data.success){
             setMessage(`Welcome, ${data.userName}!`);
+            navigate('/home');
         } else{
             setMessage(data.message||'login failed');
         }
@@ -39,7 +46,6 @@ const LoginPage =()=>{
                 </div>
                 <button type="submit">submit</button>
             </form>
-            {message && <p>{message}</p>}
         </>
     );
 }
