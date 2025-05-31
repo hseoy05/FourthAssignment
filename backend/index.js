@@ -6,7 +6,7 @@ import postRouter from './routes/posts.js';
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use('/post', postRouter);
+app.use('/posts', postRouter);
 
 await connect();
 
