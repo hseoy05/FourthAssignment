@@ -4,8 +4,11 @@ import {useNavigate} from 'react-router-dom';
 const Home = () => {
     const navigate = useNavigate();
 
-    const goToWriteContnet = () => {
-        navigate('/create/writecontent');
+    const goToLoginPage = () => {
+        navigate('/login');
+    }
+    const goToJoinPage=()=>{
+        navigate('/join');
     }
     const goToList = () => {
         navigate('/read/list');
@@ -19,7 +22,8 @@ const Home = () => {
             <p>2025350214 사이버국방학과 홍서연</p>
         </div>
         <div>
-            <p><button onClick={goToWriteContnet}>게시글 쓰기</button></p>
+            <p><button onClick={goToLoginPage}>로그인하러 가기</button></p>
+            <p><button onClick={goToJoinPage}>회원가입하러 가기</button></p>
             <p><button onClick={goToList}>게시글 목록 보기</button></p>
         </div>
         </>

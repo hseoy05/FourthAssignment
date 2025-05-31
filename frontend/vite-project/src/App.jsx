@@ -5,18 +5,20 @@ import List from './pages/Read/List';
 import WriteContent from './pages/Create/WriteContent';
 import PostDetail from './pages/Read/PostDetail';
 import EditContent from './pages/Update/EditContent';
+import JoinPage from './logInOut/joinPage';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home/>} />
         <Route path="/login" element={<LoginPage/>}/>
+        <Route path="/join" element={<JoinPage/>}/>
         <Route path="/read/list" element={<List />} />
         <Route path="/create/writecontent" element={<WriteContent/>}/>
-        <Route path="/pots/:id/edit" element={<EditContent/>}/>
+        <Route path="/posts/:id/edit" element={<EditContent/>}/>
         <Route path= "/posts/:id" element={<PostDetail/>}></Route>
-      </Routes>
+        </Routes>
     </BrowserRouter>
   );
 };
