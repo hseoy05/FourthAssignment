@@ -23,3 +23,16 @@ router.get('/',async (req, res)=>{
         res.status(500).json({message: 'error'});
     }
 });
+
+router.get('/:id', async (req,res)=>{
+    const db = getDB();
+    try{
+        const {objId}= await import('mongodb');
+        const post = await db.collection('post').findOne({_id: new objId(req.params.id)});
+        if(post) res.json(post);
+        else res.status(404).json({message: 'do not find userId'});
+    } catch {
+        res.status(500).json({message: 'error'});
+    }
+});
+
