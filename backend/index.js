@@ -12,6 +12,10 @@ app.use('/users', userRouter);
 
 await connect();
 
+app.listen(8800, () => {
+  console.log('Sercer is running on: http://localhost:8800');
+});
+
 app.post('/login', async (req, res) => {
   const { userId, userPassword } = req.body;
   const db = getDB();
@@ -26,8 +30,4 @@ app.post('/login', async (req, res) => {
   } catch (err) {
     return res.status(500).json({ success: false, message: 'server error' });
   }
-});
-
-app.listen(8800, () => {
-  console.log('서버 실행 중: http://localhost:8800');
 });

@@ -8,7 +8,10 @@ const JoinPage =()=>{
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost:8800/users",{ method:'POST', headers:{ 'Content-Type':'application/json'},body: JSON.stringify({userId,userPassword})
+            const res = await fetch("http://localhost:8800/users", {
+                method:'POST', 
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({userId,userPassword})
         });
         const data = await res.json();
         
