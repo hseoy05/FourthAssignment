@@ -3,14 +3,19 @@ import {getDB} from '../db.js';
 
 const router = express.Router();
 
-router.post("/", async (req, res)=>{
+router.post("/ogin", async (req, res)=>{
     const db = getDB();
     const {userId, userPassword} = req.body;
     try{
         await db.collection('users').insertOne({userId, userPassword});
-        res.status(201).json({success:true});
+
+        if(user){
+            return res.status(200).json({success:true, userName: user.userName || user.userId});
+        } else {
+            return res.status(401).json({success:false, message: 'Invalid'});
+        }
     }catch(err){
-        res.status(500).json({message: 'get users data failed'});
+        res.status(500).json({success: false, message: 'get users data failed'});
     }
 });
 

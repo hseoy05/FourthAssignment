@@ -6,12 +6,14 @@ import WriteContent from './pages/Create/WriteContent';
 import PostDetail from './pages/Read/PostDetail';
 import EditContent from './pages/Update/EditContent';
 import JoinPage from './logInOut/joinPage';
+import Home2 from './pages/Home2';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/home" element={<Home2/>} />
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/join" element={<JoinPage/>}/>
         <Route path="/read/list" element={<List />} />

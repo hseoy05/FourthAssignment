@@ -1,4 +1,4 @@
-import {React, useState} from 'react'
+import {React, useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom';
 
 const LoginPage =()=>{
@@ -6,27 +6,33 @@ const LoginPage =()=>{
     const [userPassword, setUserPassword] = useState('');
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
+    const [success, setSuccess] = useState(null);
 
     useEffect(()=>{
-        if(message) {alert(message)}
-    }, [message]);
+        if(success === false) {alert(message)}
+    }, [success, message]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const res = await fetch("http://localhost:8800/login", {
+        try{
+             const res = await fetch("http://localhost:8800/login", {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({userId, userPassword}),
         });
-
         const data = await res.json();
 
         if(data.success){
-            setMessage(`Welcome, ${data.userName}!`);
+            setSuccess(true);
             navigate('/home');
         } else{
             setMessage(data.message||'login failed');
+            setSuccess(false);
+        }
+        } catch (err){
+            setMessage(data.message || 'login failed');
+            setSuccess(false);
         }
     };
 
