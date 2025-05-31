@@ -1,6 +1,17 @@
 import {React, useState} from 'react'
 
 const JoinPage =()=>{
+    const [userId, setUserId] = useState('');
+    const [userPassword, setUserPassword] = useState('');
+    const [message, setMessage] = useState('');
+
+    const handleSubmit = async(e) =>{
+        e.preventDefault();
+        try {
+            const res = await fetch("http://localhost:8800/users",{ method:'POST', headers:{ 'Content-Type':'application/json'},body: JSON.stringify({userId,userPassword})
+        });
+        }
+    }
     return (
         <>
             <h2>로그인 하기</h2>
@@ -20,4 +31,4 @@ const JoinPage =()=>{
     );
 }
 
-export default JoinPag
+export default JoinPage

@@ -10,9 +10,6 @@ const Home = () => {
     const goToJoinPage=()=>{
         navigate('/join');
     }
-    const goToList = () => {
-        navigate('/read/list');
-    }
 
     return (
         <>
@@ -24,7 +21,6 @@ const Home = () => {
         <div>
             <p><button onClick={goToLoginPage}>로그인하러 가기</button></p>
             <p><button onClick={goToJoinPage}>회원가입하러 가기</button></p>
-            <p><button onClick={goToList}>게시글 목록 보기</button></p>
         </div>
         </>
     );

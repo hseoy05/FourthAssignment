@@ -12,13 +12,17 @@ const List = () => {
     return (
         <div>
             <h2>게시글 목록</h2>
-            {posts.map(post=>(
-                <div key={post._id} onClick={()=>navigate('/posts/$post._id')} style={{cursor:'pointer'}}>
-                    <h3>{post.title}</h3>
-                    <p>작성자: {post.userName}</p>
-                </div>
-            ))}
-            <p><button onClick={()=>navigate('/posts/${postId}/edit')}>게시글 수정하기</button></p>
+            {posts.length === 0 ? (
+                <p>게시글이 없습니다.</p>
+            ) : (
+                posts.map(post => (
+                    <div key={post._id} onClick={() => navigate(`/posts/${post._id}`)} style={{ cursor: 'pointer' }}>
+                        <h3>{post.title}</h3>
+                        <p>작성자: {post.userName}</p>
+                        <button onClick={e => { e.stopPropagation(); navigate(`/posts/${post._id}/edit`); }}>게시글 수정하기</button>
+                    </div>
+                ))
+            )}
         </div>
     );
 };

@@ -17,9 +17,9 @@ const LoginPage =()=>{
         const data = await res.json();
 
         if(data.success){
-            setMessage('Wellcome, ${data.userName}!');
+            setMessage("Wellcome, ${data.userName}!");
         } else{
-            setMessage(data.message);
+            setMessage(data.message||"login failed");
         }
     };
 
@@ -29,11 +29,13 @@ const LoginPage =()=>{
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>아이디: </label>
-                    <input type="text" name="userId" />
+                    <input type="text" name="userId" value={userId}
+                    onChange={(e)=>setUserId(e.target.value)} />
                 </div>
                 <div>
                     <label>비밀번호: </label>
-                    <input type="password" name="userPassword" />
+                    <input type="password" name="userPassword" value={userPassword}
+                    onChange={(e)=> setUserPassword(e.target.value)} />
                 </div>
                 <button type="submit">submit</button>
             </form>
