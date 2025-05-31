@@ -16,7 +16,7 @@ const LoginPage =()=>{
         e.preventDefault();
 
         try{
-             const res = await fetch("http://localhost:8800/login", {
+             const res = await fetch("http://localhost:8800/users/login", {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({userId, userPassword}),

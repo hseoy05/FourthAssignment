@@ -39,7 +39,7 @@ const WriteContent = () => {
                 <p><button type="submit">저장</button></p>
             </form>
             <br></br>
-            <p><button onClick={()=>{navigate('/')}}>Go to Home</button></p>
+            <p><button onClick={()=>{navigate('/home')}}>Go to Home</button></p>
         </div>
     ); 
 };

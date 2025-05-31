@@ -11,7 +11,7 @@ const Home2 = () =>{
                 <br></br>
                 <button onClick={() => navigate('/create/writecontent')}>게시글 쓰러 가기</button>
                 <br></br>
-                <button onClick={() => navigate('/join')}>회원가입하러 가기</button>
+                <button onClick={() => navigate('/register')}>회원가입하러 가기</button>
             </div>
         </>
     )

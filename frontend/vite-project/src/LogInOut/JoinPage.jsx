@@ -1,14 +1,17 @@
 import {React, useState} from 'react'
+import {useNavigate}from 'react-router-dom';
 
 const JoinPage =()=>{
+    const navigate = useNavigate();
     const [userId, setUserId] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [result, setResult] = useState(false);
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost:8800/users", {
+            const res = await fetch("http://localhost:8800/users/register", {
                 method:'POST', 
                 headers:{'Content-Type':'application/json'},
                 body: JSON.stringify({userId,userPassword})
@@ -17,9 +20,13 @@ const JoinPage =()=>{
         
         if(data.success){
             setMessage('success!');
-        }else{ setMessage('fail');}
+            setResult(true);
+        }else{ setMessage('fail');
+            setResult(false);
+        }
     } catch (err) {
         console.error(err);
+        setResult(false);
         setMessage('server error');
     }
     };
@@ -39,6 +46,9 @@ const JoinPage =()=>{
                 <button type="submit">submit</button>
             </form>
             {message && <p>{message}</p>}
+            {result && (
+                <button onClick={()=>navigate('/login')}>로그인 하러 가기</button>
+            )}
         </>
     );
 }
