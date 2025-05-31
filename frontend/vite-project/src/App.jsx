@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/read/list" element={<List />} />
         <Route path="/create/writecontent" element={<WriteContent/>}/>
         <Route path="/posts/:id/edit" element={<EditContent/>}/>
-        <Route path= "/posts/:id" element={<PostDetail/>}></Route>
+        <Route path= "/posts/:id" element={<PostDetail/>}/>
         </Routes>
     </BrowserRouter>
   );
