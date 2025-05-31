@@ -8,7 +8,7 @@ const LoginPage =()=>{
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const res = await fetch("http://localhost:3000/login", {
+        const res = await fetch("http://localhost:8800/login", {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify({userId, userPassword}),
@@ -17,9 +17,9 @@ const LoginPage =()=>{
         const data = await res.json();
 
         if(data.success){
-            setMessage("Wellcome, ${data.userName}!");
+            setMessage(`Welcome, ${data.userName}!`);
         } else{
-            setMessage(data.message||"login failed");
+            setMessage(data.message||'login failed');
         }
     };
 

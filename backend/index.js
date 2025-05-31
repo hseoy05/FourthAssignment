@@ -29,5 +29,5 @@ app.post('/login', async (req, res) => {
 });
 
 app.listen(8800, () => {
-  console.log('🚀 서버 실행 중: http://localhost:8800');
+  console.log('서버 실행 중: http://localhost:8800');
 });
