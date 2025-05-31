@@ -7,7 +7,7 @@ router.post('/', async (req,res)=>{
     const {title, content, userId} = req.body;
     const db = getDB();
     try{
-        const result = await db.collection('post').insertOne({title, content, userId });
+        const result = await db.collection('posts').insertOne({title, content, userId });
         res.status(201).json({success:true, postId:result.insertedId});
     } catch (err) {
         res.status(500).json({success:false, message: 'error'});
@@ -17,9 +17,10 @@ router.post('/', async (req,res)=>{
 router.get('/',async (req, res)=>{
     const db = getDB();
     try{
-        const posts = await db.collection('post').find({}).toArray();
+        const posts = await db.collection('posts').find({}).toArray();
         res.json(posts);
     } catch (err) {
+        console.error('posts 조회 에러');
         res.status(500).json({message: 'error'});
     }
 });
@@ -27,8 +28,8 @@ router.get('/',async (req, res)=>{
 router.get('/:id', async (req,res)=>{
     const db = getDB();
     try{
-        const {objId}= await import('mongodb');
-        const post = await db.collection('post').findOne({_id: new objId(req.params.id)});
+        const {ObjectId}= await import('mongodb');
+        const post = await db.collection('posts').findOne({_id: new ObjectId(req.params.id)});
         if(post) res.json(post);
         else res.status(404).json({message: 'do not find userId'});
     } catch {
@@ -38,9 +39,9 @@ router.get('/:id', async (req,res)=>{
 
 router.delete('/:id', async (req,res)=>{
     const db = getDB();
-    const {objId} = await import('mongodb');
+    const {ObjectId} = await import('mongodb');
     try{
-        const result = await db.collection('posts').deleteOne({_id: new objId(req.params.id)});
+        const result = await db.collection('posts').deleteOne({_id: new ObjectId(req.params.id)});
         if(result.deleteCount ==1 ) res.json({success:true});
         else res.status(404).json({success: false});
     } catch {
@@ -50,15 +51,15 @@ router.delete('/:id', async (req,res)=>{
 
 router.put('/:id', async(req,res)=>{
     const db = getDB();
-    const {objId} = await import('mongodb');
+    const {ObjectId} = await import('mongodb');
     const {title, content} = req.body;
     try{
         const result = await db.collection('posts').updateOne(
-            {_id: new objId(req.params.id)},
+            {_id: new ObjectId(req.params.id)},
             {$set:{title, content}}
         );
     } catch {
-        res.status(500).json({success: false});
+        res.status(500).json({success: result.modifiedCount === 1});
     }
 });
 

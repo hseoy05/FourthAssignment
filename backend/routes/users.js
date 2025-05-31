@@ -3,11 +3,12 @@ import {getDB} from '../db.js';
 
 const router = express.Router();
 
-router.get("/", async (req, res)=>{
+router.post("/", async (req, res)=>{
     const db = getDB();
+    const {userId, userPassword} = req.body;
     try{
-        const users = await get.DB().collection("users").find().toArray();
-        res.json(users);
+        await db.collection('users').insertOne({userId, userPassword});
+        res.status(201).json({success:true});
     }catch(err){
         res.status(500).json({message: 'get users data failed'});
     }
