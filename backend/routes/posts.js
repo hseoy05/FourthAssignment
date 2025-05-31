@@ -36,3 +36,30 @@ router.get('/:id', async (req,res)=>{
     }
 });
 
+router.delete('/:id', async (req,res)=>{
+    const db = getDB();
+    const {objId} = await import('mongodb');
+    try{
+        const result = await db.collection('posts').deleteOne({_id: new objId(req.params.id)});
+        if(result.deleteCount ==1 ) res.json({success:true});
+        else res.status(404).json({success: false});
+    } catch {
+        res.status(500).json({success:false});
+    }
+});
+
+router.put('/:id', async(req,res)=>{
+    const db = getDB();
+    const {objId} = await import('mongodb');
+    const {title, content} = req.body;
+    try{
+        const result = await db.collection('posts').updateOne(
+            {_id: new objId(req.params.id)},
+            {$set:{title, content}}
+        );
+    } catch {
+        res.status(500).json({success: false});
+    }
+});
+
+export default router;
