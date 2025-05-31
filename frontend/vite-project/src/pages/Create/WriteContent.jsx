@@ -16,7 +16,14 @@ const WriteContent = () => {
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
-        navigate('/');
+        const res = await fetch('http://localhost:8800/posts', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(form),
+        });
+        const data = await res.json();
+        if(data.success) alert('작성 완료');
+        else alert("글 저장 실패");
     }
 
     return (
@@ -29,7 +36,7 @@ const WriteContent = () => {
                     <p>Content</p>
                     <textarea name = "content" placeholder="content" rows="15" cols="50" onChange={handleChange}></textarea>
                 </div>
-                <p><button type="submit" onClick={()=>{setContent}}>저장</button></p>
+                <p><button type="submit">저장</button></p>
             </form>
             <br></br>
             <p><button onClick={()=>{navigate('/')}}>Go to Home</button></p>
