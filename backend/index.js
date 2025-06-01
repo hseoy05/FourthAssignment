@@ -1,17 +1,20 @@
 import express from 'express';
 import cors from 'cors';
-import { connect, getDB } from './db.js';
+import { connect } from './db.js';
 import postRouter from './routes/posts.js';
-import userRouter from './routes/users.js';
+import loginRouter from './routes/users/login.js';
+import registerRouter from './routes/users/register.js';
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
 app.use('/posts', postRouter);
-app.use('/users', userRouter);
+app.use('/users/login', loginRouter);
+app.use('/users/register', registerRouter);
 
 await connect();
 
 app.listen(8800, () => {
-  console.log('Sercer is running on: http://localhost:8800');
+  console.log('Server is running on: http://localhost:8800');
 });

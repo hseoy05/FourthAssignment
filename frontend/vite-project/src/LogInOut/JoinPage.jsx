@@ -5,6 +5,8 @@ const JoinPage =()=>{
     const navigate = useNavigate();
     const [userId, setUserId] = useState('');
     const [userPassword, setUserPassword] = useState('');
+    const [userName, setUserName] = useState('');
+
     const [message, setMessage] = useState('');
     const [result, setResult] = useState(false);
 
@@ -14,7 +16,7 @@ const JoinPage =()=>{
             const res = await fetch("http://localhost:8800/users/register", {
                 method:'POST', 
                 headers:{'Content-Type':'application/json'},
-                body: JSON.stringify({userId,userPassword})
+                body: JSON.stringify({userId,userPassword, userName})
         });
         const data = await res.json();
         
@@ -42,6 +44,10 @@ const JoinPage =()=>{
                 <div>
                     <label>비밀번호: </label>
                     <input type="password" name="userPassword" value={userPassword} onChange={(e) => setUserPassword(e.target.value)}/>
+                </div>
+                <div>
+                    <label>이름: </label>
+                    <input type="text" name="userName" value={userName} onChange={(e) => setUserName(e.target.value)}/>
                 </div>
                 <button type="submit">submit</button>
             </form>
