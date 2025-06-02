@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import LoginPage from './logInOut/loginPage';
+import LoginPage from './logInOut/LoginPage';
 import List from './pages/Read/List';
 import WriteContent from './pages/Create/WriteContent';
 import PostDetail from './pages/Read/PostDetail';
 import EditContent from './pages/Update/EditContent';
-import JoinPage from './logInOut/joinPage';
+import JoinPage from './logInOut/JoinPage';
 import Home2 from './pages/Home2';
 import DeleteContent from './pages/Delete/DeleteContent';
 

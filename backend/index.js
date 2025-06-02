@@ -13,8 +13,11 @@ app.use('/posts', postRouter);
 app.use('/users/login', loginRouter);
 app.use('/users/register', registerRouter);
 
-await connect();
+const startServer = async () =>{
+  await connect();
+  app.listen(8800,()=>{
+    console.log('Server running on http://localhost:8800');
+  });
+}
 
-app.listen(8800, () => {
-  console.log('Server is running on: http://localhost:8800');
-});
+startServer();
