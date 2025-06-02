@@ -1,0 +1,37 @@
+.post-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.post-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.post-content {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: #444;
+}
+
+.post-writer {
+  font-size: 16px;
+  font-style: italic;
+  color: #666;
+}
+
+.access-denied {
+  text-align: center;
+  margin-top: 100px;
+  color: #aa0000;
+  font-weight: bold;
+  font-size: 18px;
+}

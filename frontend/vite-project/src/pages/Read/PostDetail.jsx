@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
+import '../../../css/PostDetail.css';
 
 const PostDetail=()=>{
     const {id} = useParams();
@@ -19,10 +20,10 @@ const PostDetail=()=>{
     }
     
     return(
-        <div>
-            <h2>{post.title}</h2>
-            <p><h5>{post.content}</h5></p>
-            <p><h5>작성자:{post.userName}</h5></p>
+        <div className="post-container">
+            <h2 className="post-title">{post.title}</h2>
+            <p className="post-content"><h5>{post.content}</h5></p>
+            <p className="post-writer"><h5>작성자:{post.userName}</h5></p>
         </div>
     )
 }

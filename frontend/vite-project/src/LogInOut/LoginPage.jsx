@@ -39,7 +39,7 @@ const LoginPage =()=>{
             setSuccess(false);
         }
         } catch (err){
-            setMessage(data.message || 'login failed');
+            setMessage('server connect error!');
             setSuccess(false);
         }
     };
