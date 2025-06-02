@@ -19,7 +19,10 @@ const List = () => {
       <h2>게시글 목록</h2>
 
       {posts.length === 0 ? (
+        <>
         <p>게시글이 없습니다.</p>
+        <button onClick={()=>navigate("/home")}>이전 페이지로 가기기</button>
+        </>
       ) : (
         posts.map((post) => (
           <div key={post._id} style={{ border: '1px solid #ccc', marginBottom: '20px', padding: '10px' }}>
@@ -29,8 +32,8 @@ const List = () => {
             >
               <h3>{post.isPrivate && '🔒 '}{post.title}</h3>
               <h5>{post.content}</h5>
-              <p>작성자: {post.userName}</p>
-              <p><small>{post.createAt && (new Date(post.createAt).toLocaleString())}</small></p>
+              <p><small>작성자: {post.userName}</small><br></br>
+              <small>{post.createdAt && (new Date(post.createdAt).toLocaleString())}</small></p>
             </div>
 
             <button onClick={(e) => {e.stopPropagation(); 
