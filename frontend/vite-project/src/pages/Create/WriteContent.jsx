@@ -15,7 +15,7 @@ const WriteContent = () => {
         const res = await fetch('http://localhost:8800/posts', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({title, content, userId, isPrivate}),
+            body: JSON.stringify({title, content, userId: String(userId).trim(), isPrivate}),
         });
         const data = await res.json();
         if(data.success) alert('작성 완료');

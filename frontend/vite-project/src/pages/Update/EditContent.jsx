@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
+import '../../../css/EditContent.css';
 
 const EditContent=()=>{
     const {id}= useParams();
@@ -25,10 +26,11 @@ const EditContent=()=>{
               body: JSON.stringify(contents),
             });
             const data = await res.json();
-            try{
-                data = JSON.parse(text);
-            } catch (parseError){
-                console.error('파싱 실패', parseError);
+            if (data.success) {
+                alert('edit success!');
+                navigate('/home');
+            } else {
+                alert('failed');
             }
             if(data.success){
                 alert('edit success!');
@@ -42,7 +44,7 @@ const EditContent=()=>{
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="edit-container">
             <div>
                 <h2>Edit Content</h2>
                 <label>
