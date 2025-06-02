@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
+import '../../../css/WriteContent.css';
 
 const WriteContent = () => {
     const navigate = useNavigate();
@@ -22,8 +23,7 @@ const WriteContent = () => {
     }
 
     return (
-        <div>
-            <h2>게시글 쓰기</h2>
+        <div className="write-container">
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>
@@ -34,11 +34,16 @@ const WriteContent = () => {
                 <input name="title" value={title} type="text" onChange={(e) => setTitle(e.target.value)} />
                 <p>Content</p>
                 <textarea name="content" value={content} rows="15" cols="50" onChange={(e) => setContent(e.target.value)}></textarea>
-                <p><button type="submit">저장</button></p>
+                <div className="button-group">
+                    <button type="submit"className="button-primary" >SAVE</button>
+                <br></br>
+                </div>
             </form>
             <br></br>
-            <p><button onClick={()=>{navigate('/home')}}>Go to Home</button></p>
-            <p><button onClick={()=>{navigate('/read/list')}}>Go to Content List</button></p>
+            <div className="button-group">
+            <p><button type ="button" className="button-outline" onClick={()=>{navigate('/home')}}>Go to Home</button></p><br></br>
+            <p><button type="button" className="button-outline" onClick={()=>{navigate('/read/list')}}>Go to List</button></p>
+            </div>
         </div>
     ); 
 };

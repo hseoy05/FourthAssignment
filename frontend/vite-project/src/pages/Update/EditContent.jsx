@@ -4,11 +4,11 @@ import {useParams, useNavigate} from 'react-router-dom';
 const EditContent=()=>{
     const {id}= useParams();
     const navigate = useNavigate();
-    const [contents, setContents] = useState({title: '', content:''});
+    const [contents, setContents] = useState({title: '', content:'', isPrivate: false});
 
     useEffect(()=>{
         fetch(`http://localhost:8800/posts/${id}`).then(res=>res.json())
-        .then((data)=>setContents({title:data.title, content: data.content}));
+        .then((data)=>setContents({title:data.title, content: data.content, isPrivate: data.isPrivate || false,}));
     },[id]);
 
     const handleChange = (e) =>{
@@ -44,12 +44,18 @@ const EditContent=()=>{
     return (
         <form onSubmit={handleSubmit}>
             <div>
+                <h2>Edit Content</h2>
+                <label>
+                    <input type="checkbox" checked={contents.isPrivate}
+                    onChange={(e)=>{setContents((prev)=>({...prev, isPrivate:e.target.checked}));
+                    }}/>비밀글
+                </label>
                 <p>Title</p>
                 <input name = 'title' value={contents.title} onChange = {handleChange}/>
                 <p>Content</p>
                 <textarea name='content' value = {contents.content} onChange={handleChange}></textarea>
             </div>
-            <p><button type="submit">수정</button></p>
+            <p><button type="submit">수정하기</button></p>
         </form>
     );
 };

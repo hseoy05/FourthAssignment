@@ -1,5 +1,6 @@
 import {React, useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom';
+import '../../css/LoginPage.css';
 
 const LoginPage =()=>{
     const [userId, setUserId] = useState('');
@@ -15,6 +16,11 @@ const LoginPage =()=>{
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if(!userId.trim()||!userPassword.trim()){
+            alert('아이디 비밀번호를 모두 입력해주세요!');
+            return;
+        }
+        
         try{
              const res = await fetch("http://localhost:8800/users/login", {
             method: 'POST',
@@ -25,6 +31,7 @@ const LoginPage =()=>{
 
         if(data.success){
             localStorage.setItem("userId", data.userId);
+            localStorage.setItem("userName", data.userName);
             setSuccess(true);
             navigate('/home');
         } else{
@@ -38,7 +45,7 @@ const LoginPage =()=>{
     };
 
     return (
-        <>
+        <div className="login-container">
             <h2>로그인 하기</h2>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -53,7 +60,7 @@ const LoginPage =()=>{
                 </div>
                 <button type="submit">submit</button>
             </form>
-        </>
+        </div>
     );
 }
 

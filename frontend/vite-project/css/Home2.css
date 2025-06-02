@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f8e1f4, #e0f2f1); /* 파스텔톤 그라데이션 */
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+}
+
+.home-container {
+  max-width: 480px;
+  margin: 100px auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 10px; /* 덜 둥글게 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.home-container h2 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.home-container button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #c8e6c9; /* 연녹색 파스텔톤 */
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #aed581;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #9ccc65;
+}
+
+.home-container button:hover {
+  background-color: #b2dfdb; /* 살짝 다른 파스텔톤으로 hover */
+}
+
+.home-container button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+

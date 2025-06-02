@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #e0f7fa, #f3e5f5); /* 연보라+연청 파스텔톤 */
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+}
+
+.login-container {
+  max-width: 420px;
+  margin: 120px auto;
+  padding: 40px 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  font-family: 'Noto Sans KR', system-ui, sans-serif;
+}
+button {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #aed581;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #9ccc65;
+}
+
+.login-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-container label {
+  font-size: 15px;
+  margin-bottom: 6px;
+  color: #444;
+  display: block;
+}
+
+.login-container input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-sizing: border-box;
+}
+
+.login-container button {
+  padding: 12px;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background-color: #aed581; /* 연녹 파스텔 */
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login-container button:hover {
+  background-color: #9ccc65;
+}

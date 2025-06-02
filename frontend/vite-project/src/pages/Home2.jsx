@@ -1,12 +1,20 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import '../../css/Home2.css';
 
 const Home2 = () =>{
+    const [userName, setUserName] = useState('');
     const navigate = useNavigate();
+
+    useEffect(()=>{
+        const name=localStorage.getItem('userName');
+        if(name) setUserName(name);
+    },[]);
+
     return(
         <>
-            <div>
-                <h2>환영합니다!</h2>
+            <div className="home-container">
+                <h2>환영합니다!{userName&&`, ${userName}님!`}</h2>
                 <button onClick={() => navigate('/read/list')}>게시글 보러 가기</button>
                 <br></br>
                 <button onClick={() => navigate('/create/writecontent')}>게시글 쓰러 가기</button>

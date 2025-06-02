@@ -1,5 +1,6 @@
 import {React, useState} from 'react'
 import {useNavigate}from 'react-router-dom';
+import '../../css/LoginPage.css';
 
 const JoinPage =()=>{
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ const JoinPage =()=>{
     };
 
     return (
-        <>
+        <div className='login-container'>
             <h2>회원가입 하기</h2>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -50,12 +51,14 @@ const JoinPage =()=>{
                     <input type="text" name="userName" value={userName} onChange={(e) => setUserName(e.target.value)}/>
                 </div>
                 <button type="submit">submit</button>
+                <br></br>
+                <button onClick={()=>navigate("/")}>이전 페이지로</button>
             </form>
             {message && <p>{message}</p>}
             {result && (
                 <button onClick={()=>navigate('/login')}>로그인 하러 가기</button>
             )}
-        </>
+        </div>
     );
 }
 

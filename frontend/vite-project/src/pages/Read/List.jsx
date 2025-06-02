@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import '../../../css/List.css';
 const List = () => {
   const [posts, setPosts] = useState([]);
   const navigate = useNavigate();
@@ -15,17 +15,20 @@ const List = () => {
   }, []);
 
   return (
-    <div>
-      <h2>게시글 목록</h2>
+    <div className="list-container">
+      <h2>Content List</h2>
 
       {posts.length === 0 ? (
         <>
         <p>게시글이 없습니다.</p>
-        <button onClick={()=>navigate("/home")}>이전 페이지로 가기기</button>
+        <button className="back-button" onClick={()=>navigate("/home")}>이전 페이지로 가기기</button>
+        <button className="fixed-home-button" onClick={() => navigate("/home")}>
+         홈으로 가기
+        </button>
         </>
       ) : (
         posts.map((post) => (
-          <div key={post._id} style={{ border: '1px solid #ccc', marginBottom: '20px', padding: '10px' }}>
+          <div key={post._id} className="post-card" style={{ border: '1px solid #ccc', marginBottom: '20px', padding: '10px' }}>
             <div
               onClick={() => navigate(`/posts/${post._id}`)}
               style={{ cursor: 'pointer' }}
@@ -35,15 +38,15 @@ const List = () => {
               <p><small>작성자: {post.userName}</small><br></br>
               <small>{post.createdAt && (new Date(post.createdAt).toLocaleString())}</small></p>
             </div>
-
-            <button onClick={(e) => {e.stopPropagation(); 
+            <div className="button-group">
+            <button className="button-outline" onClick={(e) => {e.stopPropagation(); 
                 const nowUserId=localStorage.getItem("userId");
                 if(nowUserId!== post.userId){
                     alert('수정 권한 없음');
                     return;
                 }
                 navigate(`/posts/${post._id}/edit`);}}>게시글 수정하기</button>
-            <button onClick={(e)=>{ e.stopPropagation();
+            <button className="button-outline" onClick={(e)=>{ e.stopPropagation();
                 fetch(`http://localhost:8800/posts/${post._id}`, {
                   method: 'DELETE',
                 }).then((res) => res.json()).then((data) => {
@@ -56,6 +59,10 @@ const List = () => {
                   })
                   .catch((err) => { alert('Error!');});
               }}>게시글 삭제하기</button>
+              <br></br>
+              <p><button className="fixed-home-button" onClick={() => navigate("/home")}>
+                홈으로 가기</button></p>
+          </div>
           </div>
         ))
       )}
