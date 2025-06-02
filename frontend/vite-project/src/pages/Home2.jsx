@@ -12,6 +12,8 @@ const Home2 = () =>{
                 <button onClick={() => navigate('/create/writecontent')}>게시글 쓰러 가기</button>
                 <br></br>
                 <button onClick={() => navigate('/register')}>회원가입하러 가기</button>
+                <br></br>
+                <button onClick={()=>{localStorage.removeItem("userId"); navigate("/");}}>로그아웃 하기</button>
             </div>
         </>
     )

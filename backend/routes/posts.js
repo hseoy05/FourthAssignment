@@ -1,13 +1,17 @@
 import express from 'express';
 import {getDB} from '../db.js';
+import {ObjectId} from 'mongodb';
 
 const router = express.Router();
 
 router.post('/', async (req,res)=>{
-    const {title, content, userId} = req.body;
     const db = getDB();
+    const {title, content, userId} = req.body;
     try{
-        const result = await db.collection('posts').insertOne({title, content, userId });
+        const user = await db.collection('users').findOne({userId});
+        const userName=user?user.userName:'';
+        
+        const result = await db.collection('posts').insertOne({title, content, userId, userName });
         res.status(201).json({success:true, postId:result.insertedId});
     } catch (err) {
         res.status(500).json({success:false, message: 'error'});
@@ -28,7 +32,6 @@ router.get('/',async (req, res)=>{
 router.get('/:id', async (req,res)=>{
     const db = getDB();
     try{
-        const {ObjectId}= await import('mongodb');
         const post = await db.collection('posts').findOne({_id: new ObjectId(req.params.id)});
         if(post) res.json(post);
         else res.status(404).json({message: 'do not find userId'});
@@ -39,7 +42,6 @@ router.get('/:id', async (req,res)=>{
 
 router.delete('/:id', async (req,res)=>{
     const db = getDB();
-    const {ObjectId} = await import('mongodb');
     try{
         const result = await db.collection('posts').deleteOne({_id: new ObjectId(req.params.id)});
         if(result.deletedCount === 1 ) res.json({success:true});
@@ -49,9 +51,9 @@ router.delete('/:id', async (req,res)=>{
     }
 });
 
-router.put('/:id', async(req,res)=>{
+router.put('/posts/:id', async(req,res)=>{
     const db = getDB();
-    const {ObjectId} = await import('mongodb');
+    const {id} = req.params;
     const {title, content} = req.body;
 
     try{

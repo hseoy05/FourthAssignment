@@ -6,13 +6,14 @@ const WriteContent = () => {
 
     const [title, setTitle]=useState('');
     const [content, setContent] = useState('');
+    const userId = localStorage.getItem("userId");
 
     const handleSubmit = async(e)=>{
         e.preventDefault();
         const res = await fetch('http://localhost:8800/posts', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({title, content}),
+            body: JSON.stringify({title, content, userId}),
         });
         const data = await res.json();
         if(data.success) alert('작성 완료');

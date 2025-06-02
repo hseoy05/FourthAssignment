@@ -18,17 +18,13 @@ const EditContent=()=>{
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        console.log('🔧 handleSubmit 실행됨');
         try{
             const res=await fetch(`http://localhost:8800/posts/${id}`,{
               method:'PUT',
               headers:{'Content-Type':'application/json'},
               body: JSON.stringify(contents),
             });
-            const text = await res.text();
-            console.log('서버 응답:', text);
-
-            let data;
+            const data = await res.json();
             try{
                 data = JSON.parse(text);
             } catch (parseError){

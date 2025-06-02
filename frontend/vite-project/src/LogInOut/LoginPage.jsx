@@ -24,6 +24,7 @@ const LoginPage =()=>{
         const data = await res.json();
 
         if(data.success){
+            localStorage.setItem("userId", data.userId);
             setSuccess(true);
             navigate('/home');
         } else{
