@@ -11,7 +11,7 @@ router.post("/", async (req, res)=>{
         const user = await db.collection('users').findOne({userId, userPassword});
 
         if(user){
-            return res.status(200).json({success:true, userName: user.userId});
+            return res.status(200).json({success:true, userName: user.userName, userId: user.userId});
         } else {
             return res.status(401).json({success:false, message: 'Invalid id, password'});
         }

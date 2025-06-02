@@ -5,6 +5,7 @@ const WriteContent = () => {
     const navigate = useNavigate();
 
     const [title, setTitle]=useState('');
+    const [isPrivate, setIsPrivate] = useState(false);
     const [content, setContent] = useState('');
     const userId = localStorage.getItem("userId");
 
@@ -13,7 +14,7 @@ const WriteContent = () => {
         const res = await fetch('http://localhost:8800/posts', {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({title, content, userId}),
+            body: JSON.stringify({title, content, userId, isPrivate}),
         });
         const data = await res.json();
         if(data.success) alert('작성 완료');
@@ -25,11 +26,14 @@ const WriteContent = () => {
             <h2>게시글 쓰기</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <p>Title</p>
-                    <input name = "title" value={title} type="text" onChange={(e)=> setTitle(e.target.value)}/>
-                    <p>Content</p>
-                    <textarea name = "content" value={content} rows="15" cols="50" onChange={(e)=>setContent(e.target.value)}></textarea>
+                    <label>
+                        <input type="checkbox" checked={isPrivate} onChange={(e) => setIsPrivate(e.target.checked)} />비밀글
+                    </label>
                 </div>
+                <p>Title</p>
+                <input name="title" value={title} type="text" onChange={(e) => setTitle(e.target.value)} />
+                <p>Content</p>
+                <textarea name="content" value={content} rows="15" cols="50" onChange={(e) => setContent(e.target.value)}></textarea>
                 <p><button type="submit">저장</button></p>
             </form>
             <br></br>

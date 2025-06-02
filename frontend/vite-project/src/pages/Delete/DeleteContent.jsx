@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import axios from 'axios';
 
 const DeleteContent =()=>{
-    cosnt [nowUserId, setNowUserId] = useState('');
+    const [nowUserId, setNowUserId] = useState('');
     const {id}= useParams();
 
     useEffect(()=>{
@@ -20,7 +20,7 @@ const DeleteContent =()=>{
         deletePost();
     },[id]);
 
-    return (<div>loading . . .</div>)
+    return <div><h2>loading . . .</h2></div>
 };
 
 export default DeleteContent;
