@@ -7,6 +7,7 @@ import PostDetail from './pages/Read/PostDetail';
 import EditContent from './pages/Update/EditContent';
 import JoinPage from './logInOut/joinPage';
 import Home2 from './pages/Home2';
+import DeleteContent from './pages/Delete/DeleteContent';
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/create/writecontent" element={<WriteContent/>}/>
         <Route path="/posts/:id/edit" element={<EditContent/>}/>
         <Route path= "/posts/:id" element={<PostDetail/>}/>
+        <Route path="/posts/:id/delete" element={<DeleteContent/>}/>
         </Routes>
     </BrowserRouter>
   );
