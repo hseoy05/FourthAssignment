@@ -42,7 +42,7 @@ router.delete('/:id', async (req,res)=>{
     const {ObjectId} = await import('mongodb');
     try{
         const result = await db.collection('posts').deleteOne({_id: new ObjectId(req.params.id)});
-        if(result.deleteCount ==1 ) res.json({success:true});
+        if(result.deletedCount === 1 ) res.json({success:true});
         else res.status(404).json({success: false});
     } catch {
         res.status(500).json({success:false});
@@ -53,13 +53,17 @@ router.put('/:id', async(req,res)=>{
     const db = getDB();
     const {ObjectId} = await import('mongodb');
     const {title, content} = req.body;
+
     try{
         const result = await db.collection('posts').updateOne(
             {_id: new ObjectId(req.params.id)},
             {$set:{title, content}}
         );
-    } catch {
-        res.status(500).json({success: result.modifiedCount === 1});
+
+        if(result.modifiedCount === 1) res.json({success:true});
+        else res.status(404).json({success: false});
+    } catch(err) {
+        res.status(500).json({success: false, message:'update error'});
     }
 });
 
