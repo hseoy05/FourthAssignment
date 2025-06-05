@@ -1,6 +1,6 @@
 import {React, useState} from 'react'
 import {useNavigate}from 'react-router-dom';
-import '../../css/LoginPage.css';
+import '../../components/User/Register.css';
 
 const JoinPage =()=>{
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ const JoinPage =()=>{
     };
 
     return (
-        <div className='login-container'>
+        <div className='register-container'>
             <h2>회원가입 하기</h2>
             <form onSubmit={handleSubmit}>
                 <div>

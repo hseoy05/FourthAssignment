@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import '../../../css/PostDetail.css';
+import '../../../components/Post/PostDetail.css';
 
 const PostDetail=()=>{
     const {id} = useParams();
+    const commentInputRef =useRef();
     const [post, setPost] = useState(null);
     const [comments, setComments]=useState([]);
     const [commentInput, setCommentInput]=useState("");
@@ -40,26 +41,31 @@ const PostDetail=()=>{
         const newComment = await res.json();
         setComments(prev => [newComment, ...prev]);
         setCommentInput('');
+
+        commentInputRef.current?.focus();
     };
     
     return(
         <>
         <div className="post-container">
             <h1 className="post-title">"{post.title}"</h1>
-            <p className="post-content"><h4>{post.content}</h4></p>
-            <p className="post-writer"><h5>작성자:{post.userName}</h5></p>
+            <div className="post-content"><h4>{post.content}</h4></div>
+            <br></br>
+            <div className="post-writer"><h5>작성자:{post.userName}</h5></div>
+            <br></br>
             <div className='comment-section'>
                 <h5>💬 comment:</h5>
-
-
                 <div className ="comment-input-wrapper">
-                <input type="text" placeholder='write comment'
+                <input type="text" 
+                placeholder='write comment'
+                ref={commentInputRef}
                 value={commentInput} onChange={(e)=> setCommentInput(e.target.value)}
                 />
-                    <button onClick={handleCommentSubmit}>작성하기</button>
+                <button onClick={handleCommentSubmit}
+                style={{backgroundColor: 'black'}}>작성하기</button>
                 </div>
                     <ul>
-                        {comments.map((c)=>(
+                        {Array.isArray(comments) && comments.map((c)=>(
                             <li key={c._id}>
                                 <strong>{c.author}</strong>: {c.content}
                             </li>

@@ -1,0 +1,44 @@
+.home-container {
+  max-width: 600px;
+  margin: 120px auto;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.home-container h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.home-container h3 {
+  margin: 10px 0;
+  font-weight: 500;
+  color: #666;
+}
+
+.home-container small {
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.home-container button {
+  padding: 10px 24px;
+  margin: 10px;
+  font-size: 14px;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.home-container button:hover {
+  background-color: #43a047;
+}

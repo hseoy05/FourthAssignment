@@ -1,0 +1,68 @@
+.post-list-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.post-card {
+  background-color: #ffffff;
+  padding: 24px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.post-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.post-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.post-preview {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.post-meta {
+  font-size: 0.85rem;
+  color: #888;
+  text-align: right;
+}
+.comment-input-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  align-items: center;
+}
+
+.comment-input-wrapper input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.comment-input-wrapper button {
+  padding: 10px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.comment-input-wrapper button:hover {
+  background-color: #43a047;
+}

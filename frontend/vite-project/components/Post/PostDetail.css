@@ -1,0 +1,70 @@
+.post-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.post-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.post-writer {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+}
+
+.comment-section {
+  margin-top: 40px;
+}
+
+.comment-section ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+}
+
+.comment-section li {
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.comment-input-wrapper {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.comment-input-wrapper input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+}
+
+.comment-input-wrapper button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  transition: background-color var(--transition-speed);
+}
+
+.comment-input-wrapper button:hover {
+  background-color: #43a047;
+}
