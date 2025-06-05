@@ -5,7 +5,14 @@ import '../../../css/PostDetail.css';
 const PostDetail=()=>{
     const {id} = useParams();
     const [post, setPost] = useState(null);
+    const [comments, setComments]=useState([]);
+    const [commentInput, setCommentInput]=useState("");
     const nowUserId = localStorage.getItem("userId");
+
+    useEffect(()=>{
+        fetch(`http://localhost:8800/comments/${id}`).then(res=>res.json())
+        .then(data=>setComments(data));
+    },[id]);
 
     useEffect(()=>{
         fetch(`http://localhost:8800/posts/${id}`).then(res=>res.json()).then(setPost);
@@ -18,6 +25,22 @@ const PostDetail=()=>{
             <><p>잘못된 접근입니다.</p><p>작성자만 열람할 수 있습니다.</p></>
         )
     }
+
+    const handleCommentSubmit =async()=>{
+        const res = await fetch('http://localhost:8800/comments',{
+            method: 'Post',
+            headers: {'Content-type':'application/json'},
+            body: JSON.stringify({
+                postId: id,
+                author: localStorage.getItem("userId"),
+                content: commentInput,
+            })
+        });
+
+        const newComment = await res.json();
+        setComments(prev => [newComment, ...prev]);
+        setCommentInput('');
+    };
     
     return(
         <>
@@ -27,6 +50,21 @@ const PostDetail=()=>{
             <p className="post-writer"><h5>작성자:{post.userName}</h5></p>
             <div className='comment-section'>
                 <h5>💬 comment:</h5>
+
+
+                <div className ="comment-input-wrapper">
+                <input type="text" placeholder='write comment'
+                value={commentInput} onChange={(e)=> setCommentInput(e.target.value)}
+                />
+                    <button onClick={handleCommentSubmit}>작성하기</button>
+                </div>
+                    <ul>
+                        {comments.map((c)=>(
+                            <li key={c._id}>
+                                <strong>{c.author}</strong>: {c.content}
+                            </li>
+                        ))}
+                    </ul>
                 <br></br>
             </div>
         </div>
