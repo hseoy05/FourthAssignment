@@ -10,13 +10,29 @@ const PostDetail=()=>{
     const [commentInput, setCommentInput]=useState("");
     const nowUserId = localStorage.getItem("userId");
 
+    const fetchComments =async()=>{
+        try{
+            const res = await fetch(`http://localhost:8800/comments/${id}`);
+            const data = await res.json();
+            if(Array.isArray(data)) setComments(data);
+            else setComments([]);
+        } catch (err){
+            console.error('댓글 불러오기 실패:',err);
+            setComments([]);
+        }
+    };
+
     useEffect(()=>{
         fetch(`http://localhost:8800/comments/${id}`).then(res=>res.json())
         .then(data=>setComments(data));
     },[id]);
 
     useEffect(()=>{
-        fetch(`http://localhost:8800/posts/${id}`).then(res=>res.json()).then(setPost);
+        fetch(`http://localhost:8800/posts/${id}`)
+        .then(res=>res.json())
+        .then(data =>{setPost(data);})
+        .catch(err=>{console.error('게시글 불러오기 실패:', err);            
+        });
     },[id]);
 
     if(!post) return <p>loding ...</p>
@@ -39,8 +55,8 @@ const PostDetail=()=>{
         });
 
         const newComment = await res.json();
-        setComments(prev => [newComment, ...prev]);
         setCommentInput('');
+        await fetchComments();
 
         commentInputRef.current?.focus();
     };
