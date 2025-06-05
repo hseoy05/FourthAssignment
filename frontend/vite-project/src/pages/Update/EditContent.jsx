@@ -28,15 +28,10 @@ const EditContent=()=>{
             const data = await res.json();
             if (data.success) {
                 alert('edit success!');
-                navigate('/home');
+                navigate('/read/list');
             } else {
                 alert('failed');
             }
-            if(data.success){
-                alert('edit success!');
-                navigate(`/home`);
-            }
-            else alert('failed');
         } catch (err){
             alert('error!');
             console.log(err);

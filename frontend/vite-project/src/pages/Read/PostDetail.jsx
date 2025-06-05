@@ -1,9 +1,10 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, useNavigate} from 'react-router-dom';
 import '../../../components/Post/PostDetail.css';
 
 const PostDetail=()=>{
     const {id} = useParams();
+    const navigate = useNavigate();
     const commentInputRef =useRef();
     const [post, setPost] = useState(null);
     const [comments, setComments]=useState([]);
@@ -44,12 +45,17 @@ const PostDetail=()=>{
     }
 
     const handleCommentSubmit =async()=>{
+        const userId = localStorage.getItem("userId");
+        if(!userId){
+            alert("로그인 정보가 없습니다!");
+            return;
+        }
         const res = await fetch('http://localhost:8800/comments',{
-            method: 'Post',
+            method: 'POST',
             headers: {'Content-type':'application/json'},
             body: JSON.stringify({
                 postId: id,
-                author: localStorage.getItem("userId"),
+                userId: userId,
                 content: commentInput,
             })
         });
@@ -69,6 +75,7 @@ const PostDetail=()=>{
             <br></br>
             <div className="post-writer"><h5>작성자:{post.userName}</h5></div>
             <br></br>
+
             <div className='comment-section'>
                 <h5>💬 comment:</h5>
                 <div className ="comment-input-wrapper">
@@ -83,12 +90,16 @@ const PostDetail=()=>{
                     <ul>
                         {Array.isArray(comments) && comments.map((c)=>(
                             <li key={c._id}>
-                                <strong>{c.author}</strong>: {c.content}
+                                <strong>{c.userId}</strong>: {c.content}
                             </li>
                         ))}
                     </ul>
                 <br></br>
-            </div>
+                <div calssName="back-button-wrapper">
+                    <button className="back-button"
+                    onClick={()=>navigate('/read/list')}>← 목록으로 돌아가기</button>
+                </div>
+                </div>
         </div>
 
         </>

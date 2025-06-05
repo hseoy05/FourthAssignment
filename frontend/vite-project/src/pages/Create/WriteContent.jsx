@@ -18,8 +18,11 @@ const WriteContent = () => {
             body: JSON.stringify({title, content, userId: String(userId).trim(), isPrivate}),
         });
         const data = await res.json();
-        if(data.success) alert('작성 완료');
-        else alert("글 저장 실패");
+        if(data.success) {
+            alert('success!');
+            navigate('/read/list');
+        }
+        else alert("failed!");
     }
 
     return (

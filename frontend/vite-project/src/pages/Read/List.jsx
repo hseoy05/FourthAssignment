@@ -22,11 +22,13 @@ const List = () => {
 
       {posts.length === 0 ? (
         <>
-          <p>게시글이 없습니다.</p>
-          <button className="back-button" onClick={() => navigate("/home")}>이전 페이지로 가기</button>
-          <button className="fixed-home-button" onClick={() => navigate("/home")}>
-            홈으로 가기
+        <div className="empty-post-wrapper">
+          <p className="empty-text">📭 등록된 게시글이 없습니다.</p>
+          <button className="back-button" onClick={() => navigate("/home")}>← 이전 페이지</button>
+          <button className="home-button" onClick={() => navigate("/home")}>
+            🏠 홈으로 가기
           </button>
+        </div>
         </>
       ) : (
         posts.map((post) => (
@@ -40,10 +42,10 @@ const List = () => {
                 {post.isPrivate && post.userId !== nowUserId ? '...' : post.title}
               </h3>
               <h5>{post.isPrivate && post.userId !== nowUserId ? '...' : post.content}</h5>
-              <p>
+              <div>
                 <small>작성자: {post.userName}</small><br />
                 <small>{post.createdAt && (new Date(post.createdAt).toLocaleString())}</small>
-              </p>
+              </div>
             </div>
             <div className="button-group">
               <button className="button-outline" onClick={(e) => {
@@ -68,6 +70,7 @@ const List = () => {
               </button>
               <br />
               <p>
+                <br></br>
                 <button className="fixed-home-button" onClick={() => navigate("/home")}>
                   홈으로 가기
                 </button>
