@@ -20,11 +20,18 @@ const PostDetail=()=>{
     }
     
     return(
+        <>
         <div className="post-container">
-            <h2 className="post-title">{post.title}</h2>
-            <p className="post-content"><h5>{post.content}</h5></p>
+            <h1 className="post-title">"{post.title}"</h1>
+            <p className="post-content"><h4>{post.content}</h4></p>
             <p className="post-writer"><h5>작성자:{post.userName}</h5></p>
+            <div className='comment-section'>
+                <h5>💬 comment:</h5>
+                <br></br>
+            </div>
         </div>
+
+        </>
     )
 }
 export default PostDetail;

@@ -13,9 +13,9 @@ const Home = () => {
             <p><small>2025350214 사이버국방학과 홍서연</small></p>
         </div>
         <div>
-            <p><button onClick={()=>navigate('/login')}>로그인하러 가기</button>
+            <p><button onClick={()=>navigate('/login')}>Login</button>
             <br></br>
-            <button onClick={()=>navigate('/register')}>회원가입하러 가기</button></p>
+            <button onClick={()=>navigate('/register')}>Join</button></p>
         </div>
         </div>
     );

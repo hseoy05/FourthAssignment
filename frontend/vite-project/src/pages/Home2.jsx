@@ -15,13 +15,12 @@ const Home2 = () =>{
         <>
             <div className="home-container">
                 <h2>환영합니다!{userName&&`, ${userName}님!`}</h2>
-                <button onClick={() => navigate('/read/list')}>게시글 보러 가기</button>
+                <button onClick={() => navigate('/read/list')}>Read Content List</button>
                 <br></br>
-                <button onClick={() => navigate('/create/writecontent')}>게시글 쓰러 가기</button>
+                <button onClick={() => navigate('/create/writecontent')}>Wirte Content</button>
                 <br></br>
-                <button onClick={() => navigate('/register')}>회원가입하러 가기</button>
                 <br></br>
-                <button onClick={()=>{localStorage.removeItem("userId"); navigate("/");}}>로그아웃 하기</button>
+                <button onClick={()=>{localStorage.removeItem("userId"); navigate("/");}}>Log out</button>
             </div>
         </>
     )
